@@ -52,8 +52,8 @@ public static class GameResources
 		NewSound("Sink", "sink.wav");
 		NewSound("Siren", "siren.wav");
 		NewSound("Miss", "torpedoLaunch.wav");
-		NewSound("Winner", "winner.wav");
-		NewSound("Lose", "lose.wav");
+		NewSound("Winner", "winning_sound.wav");
+		NewSound("Lose", "loser_sound.wav");
 	}
 
 	private static void LoadMusic()
