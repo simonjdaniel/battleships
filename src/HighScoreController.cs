@@ -116,7 +116,7 @@ static class HighScoreController
 		output.WriteLine(_Scores.Count);
 
 		foreach (Score s in _Scores) {
-			output.WriteLine(s.Name + s.Value);
+			output.WriteLine(s.Name.ToUpper() + s.Value);
 		}
 
 		output.Close();
@@ -146,9 +146,9 @@ static class HighScoreController
 
 			//for scores 1 - 9 use 01 - 09
 			if (i < 9) {
-				SwinGame.DrawText(" " + (i + 1) + ":   " + s.Name + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+				SwinGame.DrawText(" " + (i + 1) + ":   " + s.Name.ToUpper() + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
 			} else {
-				SwinGame.DrawText(i + 1 + ":   " + s.Name + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+				SwinGame.DrawText(i + 1 + ":   " + s.Name.ToUpper() + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
 			}
 		}
 	}
@@ -189,7 +189,7 @@ static class HighScoreController
 			int x = 0;
 			x = SCORES_LEFT + SwinGame.TextWidth(GameFont("Courier"), "Name: ");
 //text size
-			SwinGame.StartReadingText(Color.Red, NAME_WIDTHO, GameFont("Courier"), (x+1), ENTRY_TOP);
+			SwinGame.StartReadingText(Color.Red, NAME_WIDTH, GameFont("Courier"), (x+1), ENTRY_TOP);
 
 			//Read the text from the user
 			while (SwinGame.ReadingText()) {
@@ -204,7 +204,7 @@ static class HighScoreController
 			s.Name = SwinGame.TextReadAsASCII();
 
 			if (s.Name.Length < 3) {
-				s.Name = s.Name + new string(Convert.ToChar(" "), 3 - s.Name.Length);
+				s.Name = s.Name.ToUpper() + new string(Convert.ToChar(" "), 3 - s.Name.Length);
 			}
 
 			_Scores.RemoveAt(_Scores.Count - 1);
