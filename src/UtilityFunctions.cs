@@ -247,6 +247,8 @@ static class UtilityFunctions
 			break;
 			case GameState.ViewingHighScores:
 			SwinGame.DrawBitmap(GameImage("Highscores"), 0, 0);
+			//SwinGame.DrawBitmap(GameImage("WhiteHS"), 0, 0);
+
 				break;
 			case GameState.Discovering:
 			case GameState.EndingGame:

@@ -24,8 +24,10 @@ using static MenuController;
 static class HighScoreController
 {
 	private const int NAME_WIDTH = 3;
+	private const int NAME_WIDTHO = 4;
 
 	private const int SCORES_LEFT = 490;
+	private const int SCORES_LEFTER = 440;
 	/// <summary>
 	/// The score structure is used to keep the name and
 	/// score of the top players together.
@@ -120,6 +122,7 @@ static class HighScoreController
 		output.Close();
 	}
 
+
 	/// <summary>
 	/// Draws the high scores to the screen.
 	/// </summary>
@@ -131,7 +134,7 @@ static class HighScoreController
 
 		if (_Scores.Count == 0)
 			LoadScores();
-
+		SwinGame.FillRectangle(Color.DarkGray, (SCORES_LEFT - 20), (SCORES_HEADING - 10), 265, 375);
 		SwinGame.DrawText("   High Scores   ", Color.Red, GameFont("Courier"), SCORES_LEFT, SCORES_HEADING);
 
 		//For all of the scores
@@ -143,9 +146,9 @@ static class HighScoreController
 
 			//for scores 1 - 9 use 01 - 09
 			if (i < 9) {
-				SwinGame.DrawText(" " + (i + 1) + ":   " + s.Name + "   " + s.Value, Color.Red, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+				SwinGame.DrawText(" " + (i + 1) + ":   " + s.Name + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
 			} else {
-				SwinGame.DrawText(i + 1 + ":   " + s.Name + "   " + s.Value, Color.Red, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+				SwinGame.DrawText(i + 1 + ":   " + s.Name + "   " + s.Value, Color.White, GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
 			}
 		}
 	}
@@ -180,12 +183,13 @@ static class HighScoreController
 			Score s = new Score();
 			s.Value = value;
 
-			AddNewState(GameState.ViewingHighScores);
 
+			AddNewState(GameState.ViewingHighScores);
+			SwinGame.FillRectangle(Color.White, NAME_WIDTHO, ENTRY_TOP, 265, 50);
 			int x = 0;
 			x = SCORES_LEFT + SwinGame.TextWidth(GameFont("Courier"), "Name: ");
-
-			SwinGame.StartReadingText(Color.Red, NAME_WIDTH, GameFont("Courier"), x, ENTRY_TOP);
+//text size
+			SwinGame.StartReadingText(Color.Red, NAME_WIDTHO, GameFont("Courier"), (x+1), ENTRY_TOP);
 
 			//Read the text from the user
 			while (SwinGame.ReadingText()) {
